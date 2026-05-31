@@ -1,0 +1,35 @@
+# ~/.config/yazi/theme.toml
+
+[manager]
+cwd = { fg = "#fabd2f" }
+
+# Selection colors (Gruvbox style)
+hovered         = { fg = "#282828", bg = "#fabd2f" }
+preview_hovered = { underline = true }
+
+# File markers
+find_keyword  = { fg = "#b8bb26", italic = true }
+find_position = { fg = "#fe8019", bg = "reset", italic = true }
+
+[status]
+separator_open  = ""
+separator_close = ""
+
+[filetype]
+rules = [
+    # 1. Specific Extensions (Higher priority)
+    { name = "*.js",   fg = "#f1e05a" },  # JS - Yellow
+    { name = "*.ts",   fg = "#3178c6" },  # TS - Blue
+    { name = "*.rs",   fg = "#dea584" },  # Rust - Orange
+    { name = "*.json", fg = "#cbc01e" },  # JSON - Gold
+    { name = "*.md",   fg = "#bd93f9" },  # Markdown - Purple
+    { name = "*.css",  fg = "#563d7c" },  # CSS - Purple/Dark
+
+    # 2. General File Types (Lower priority)
+    { mime = "image/*", fg = "#83a598" }, # Images - Teal
+    { mime = "video/*", fg = "#d3869b" }, # Videos - Pink
+    { mime = "inode/directory", fg = "#8ec07c", bold = true }, # Folders - Green
+
+    # 3. Default (Everything else)
+    { mime = "*", fg = "#ebdbb2" }
+]

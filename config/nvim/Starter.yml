@@ -1,0 +1,99 @@
+---
+- name: Install Neovim from source on Arch Linux and apply custom config
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Update the pacman cache
+      community.general.pacman:
+        update_cache: yes
+
+    - name: Install required build dependencies for Neovim
+      community.general.pacman:
+        name:
+          - base-devel
+          - ninja
+          - cmake
+          - unzip
+          - curl
+          - git
+          - fzf
+          - luajit
+          - luarocks
+          - ripgrep
+          - libtool
+          - autoconf
+          - automake
+          - gcc
+          - pkgconf
+          - python
+          - python-pip
+          - libuv
+          - libluv
+          - msgpack-c
+          - libtermkey
+          - libvterm
+          - lua51
+          - lua51-lpeg
+          - lua51-mpack
+          - lua51-bitop
+          - doxygen
+        state: present
+
+    - name: Check for existing Neovim version
+      ansible.builtin.command: nvim --version
+      register: nvim_version
+      ignore_errors: true
+
+    - name: Extract installed Neovim version
+      set_fact:
+        nvim_installed_version: "{{ nvim_version.stdout_lines[0].split()[1] | regex_replace('[^0-9.]', '') }}"
+      when: nvim_version.rc == 0
+
+    - name: Show installed Neovim version
+      ansible.builtin.debug:
+        msg: "Detected Neovim version: {{ nvim_installed_version | default('none') }}"
+
+    - name: Clone Neovim repository
+      ansible.builtin.git:
+        repo: https://github.com/neovim/neovim.git
+        dest: /usr/local/src/neovim
+        version: stable
+      when: nvim_version.rc != 0 or (nvim_installed_version is version('0.10.0', '<'))
+
+    - name: Build and install Neovim
+      ansible.builtin.shell: |
+        make CMAKE_BUILD_TYPE=Release
+        make install
+      args:
+        chdir: /usr/local/src/neovim
+      when: nvim_version.rc != 0 or (nvim_installed_version is version('0.10.0', '<'))
+
+    - name: Verify Neovim installation
+      ansible.builtin.command: nvim --version
+      register: neovim_version
+      ignore_errors: true
+
+    - name: Show Neovim version
+      ansible.builtin.debug:
+        msg: "Installed Neovim version: {{ neovim_version.stdout }}"
+
+    - name: Remove Neovim source directory
+      ansible.builtin.file:
+        path: /usr/local/src/neovim
+        state: absent
+      when: nvim_version.rc != 0 or (nvim_installed_version is version('0.10.0', '<'))
+
+    # 🎴 Clone your personal Neovim config
+    - name: Clone ToadSage45's Neovim config
+      ansible.builtin.git:
+        repo: https://github.com/T0adSage45/nvim.git
+        dest: "{{ ansible_env.HOME }}/.config/nvim"
+        force: yes
+
+    # 🌀 Optional: Install plugins (assuming lazy.nvim, packer, etc.)
+    - name: Launch Neovim to trigger plugin install
+      ansible.builtin.shell: |
+        nvim --headless "+Lazy! sync" +qa
+      args:
+        executable: /bin/bash

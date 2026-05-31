@@ -1,0 +1,64 @@
+[[language]]
+name = "javascript"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.js"] }
+
+[[language]]
+name = "typescript"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.ts"] }
+
+[[language]]
+name = "jsx"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.jsx"] }
+
+[[language]]
+name = "tsx"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.tsx"] }
+
+[[language]]
+name = "json"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.json"] }
+
+[[language]]
+name = "html"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.html"] }
+
+[[language]]
+name = "css"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.css"] }
+
+[[language]]
+name = "python"
+formatter = { command = "black", args = ["--quiet", "-"] }
+
+[[language]]
+name = "rust"
+formatter = { command = "rustfmt", args = ["--edition", "2021"] }
+
+[[language]]
+name = "go"
+formatter = { command = "gofmt" }
+
+[[language]]
+name = "yaml"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.yaml"] }
+
+[[language]]
+name = "markdown"
+formatter = { command = "prettier", args = ["--stdin-filepath", "file.md"] }
+
+[[language]]
+name = "gdscript"
+language-servers = ["godot"]
+formatter = { command = "gdformat", args = ["-"] }
+
+[language-server.godot]
+command = "nc"
+args = ["localhost", "6005"]
+
+[[language]]
+name = "kotlin"
+formatter = { command = "ktlint", args = ["--format", "--stdin"] }
+
+[[language]]
+name = "dart"
+formatter = { command = "dart", args = ["format"] }

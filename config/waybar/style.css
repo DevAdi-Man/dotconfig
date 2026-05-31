@@ -1,0 +1,188 @@
+/* vim: set filetype=less: */
+@import "theme.css";
+
+/* Base styles */
+* {
+  font-family: JetBrains Mono Nerd Font;
+  font-size: 17px;
+  min-height: 0;
+}
+
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 5px 5px;
+}
+
+/* Workspaces */
+#custom-workspaces {
+  background-color: @surface0;
+  border-radius: 1rem;
+  margin: 5px;
+  margin-left: 1rem;
+  padding: 0.4rem 1rem;
+  color: @lavender;
+}
+
+/* Shared module styles */
+#custom-music,
+#custom-pomodoro,
+#tray,
+#backlight,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#custom-lock,
+#custom-power,
+#custom-launcher {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
+}
+
+#custom-cpu,
+#custom-gpu,
+#custom-ram {
+  background-color: @surface0;
+  padding: 0.5rem 0.5rem;
+  margin: 5px 0;
+}
+
+/* System monitors */
+#custom-cpu {
+  color: @red;
+}
+
+#custom-gpu {
+  color: @green;
+}
+
+#custom-ram {
+  color: @yellow;
+}
+
+/* Left section */
+#custom-music {
+  color: @text;
+  border-radius: 1rem;
+}
+
+#custom-music.playing {
+  color: @mauve;
+}
+
+#custom-music.paused {
+  color: @yellow;
+}
+
+#custom-music.idle {
+  color: @overlay0;
+}
+
+#custom-pomodoro {
+  color: @text;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+}
+
+#custom-pomodoro.running {
+  color: @green;
+}
+
+#custom-pomodoro.paused {
+  color: @yellow;
+}
+
+#custom-pomodoro.waiting {
+  color: @red;
+}
+
+/* Center section */
+#custom-launcher {
+  color: @mauve;
+  border-radius: 1rem 0px 0px 1rem;
+}
+
+#clock {
+  color: @mauve;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+/* Right section - pulseaudio is first (left edge) */
+#pulseaudio {
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#backlight {
+  color: @yellow;
+  border-radius: 0;
+}
+
+#network {
+  color: @blue;
+  border-radius: 0;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+#bluetooth {
+  color: @blue;
+  border-radius: 0;
+}
+
+#bluetooth.disabled {
+  color: @overlay0;
+}
+
+#bluetooth.connected {
+  color: @teal;
+}
+
+#battery {
+  color: @green;
+  border-radius: 0px 1rem 1rem 0px;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#tray {
+  border-radius: 1rem;
+  margin-left: 1rem;
+}
+
+/* Lock/Power section - separate group */
+#custom-lock {
+  color: @lavender;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
+}
+
+#custom-power {
+  color: @red;
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 1rem;
+}
+
+/* tooltip */
+tooltip {
+  background-color: @base;
+  border-radius: 0.75rem;
+  border: 2px solid @mauve;
+}
+
+tooltip label {
+  color: @text;
+  margin: 0 1rem;
+}

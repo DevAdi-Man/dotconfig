@@ -1,0 +1,59 @@
+binds {
+    // apps
+    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+X hotkey-overlay-title="Xournal++" { spawn "xournalpp"; }
+    Mod+E hotkey-overlay-title="Nautilus" { spawn "nautilus"; }
+    Mod+B hotkey-overlay-title="Zen Browser" { spawn "flatpak" "run" "app.zen_browser.zen"; }
+    Mod+Shift+M hotkey-overlay-title="Spotify" { spawn "flatpak" "run" "com.spotify.Client"; }
+    // Mod+S hotkey-overlay-title="Spotify Web" { spawn-sh "flatpak run app.zen_browser.zen https://open.spotify.com"; }
+    Ctrl+Alt+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+
+    // media and pomodoro
+    Mod+Alt+Space { spawn "playerctl" "play-pause"; }
+    Mod+Alt+N     { spawn "playerctl" "next"; }
+    Mod+Alt+B     { spawn "playerctl" "previous"; }
+    Mod+Alt+P     { spawn "taskbeep" "toggle"; }
+    Mod+Alt+W     { spawn "taskbeep" "working"; }
+
+    // navigation
+    Mod+H { focus-column-left; }
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+    Mod+L { focus-column-right; }
+
+    // fuzzel
+    Mod+V hotkey-overlay-title="Fuzzel Clipboard" { spawn-sh "~/.scripts/clipmenu.sh"; }
+    Mod+T hotkey-overlay-title="Read Clipboard" { spawn-sh "~/Scripts/read_clipboard.sh"; }
+    Mod+Shift+Period hotkey-overlay-title="emoji selector" { spawn-sh "~/.scripts/fuzzel-emoji.sh"; }
+
+    // actions
+    Mod+Shift+S { screenshot; }
+    // Mod+TabletStylusPrimary hotkey-overlay-title="Toggle tablet mapping" { spawn-sh "~/.scripts/niri-tablet.sh"; }
+
+    // navigation mouse
+    Mod+MouseForward { focus-column-left; }
+    Mod+MouseBack { focus-column-right; }
+
+    // vol-ctl
+    XF86AudioRaiseVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh raise"; }
+    XF86AudioLowerVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh lower"; }
+    XF86AudioMute { spawn-sh "~/.scripts/vol-ctl-wrapper.sh mute"; }
+    Mod+XF86AudioRaiseVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh sink-raise"; }
+    Mod+XF86AudioLowerVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh sink-lower"; }
+    Mod+XF86AudioMute { spawn-sh "~/.scripts/vol-ctl-wrapper.sh sink-mute"; }
+    Shift+XF86AudioRaiseVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh cycle-next"; }
+    Shift+XF86AudioLowerVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh cycle-prev"; }
+    Mod+Shift+XF86AudioRaiseVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh sink-next"; }
+    Mod+Shift+XF86AudioLowerVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh sink-prev"; }
+    Mod+Ctrl+XF86AudioRaiseVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh default-next"; }
+    Mod+Ctrl+XF86AudioLowerVolume { spawn-sh "~/.scripts/vol-ctl-wrapper.sh default-prev"; }
+
+
+    // settings
+    Mod+G hotkey-overlay-title="Open GNOME Settings" {
+        spawn-sh "XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+    }
+    Mod+Shift+T hotkey-overlay-title="Change Theme" { spawn-sh "~/.scripts/change-theme.sh"; }
+}

@@ -1,0 +1,15 @@
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+
+[font]
+normal.family = "JetBrains Mono Nerd Font"
+
+[window]
+decorations = "none"
+
+[cursor]
+style = { shape = "Beam", blinking = "Always" }
+
+[bell]
+animation = "EaseOutExpo"
+duration = 150
+color = "#ffffff"
